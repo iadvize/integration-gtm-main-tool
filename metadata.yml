@@ -1,0 +1,5 @@
+homepage: "https://www.iadvize.com"
+documentation: "https://help.iadvize.com/hc/en-gb/articles/202575988"
+versions:
+  - sha: 05380c7e35b284987aa276a312455541b3220977
+    changeNotes: Initial release.
