@@ -1,5 +1,7 @@
 homepage: "https://www.iadvize.com"
 documentation: "https://help.iadvize.com/hc/en-gb/articles/202575988"
 versions:
+  - sha: ab3a63001441ac9cb0f1ca156fc56d026abb2940
+    changeNotes: Add encodeUriComponent for review process.
   - sha: 05380c7e35b284987aa276a312455541b3220977
     changeNotes: Initial release.
