@@ -198,9 +198,10 @@ ___TEMPLATE_PARAMETERS___
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 const injectScript = require('injectScript');
+const encodeUriComponent = require('encodeUriComponent');
 
 injectScript(
-  'https://'+data.hostname+'/iadvize.js?sid='+data.sid+(data.lang ? '&lang='+data.lang : ''),
+  'https://'+encodeUriComponent(data.hostname)+'/iadvize.js?sid='+encodeUriComponent(data.sid)+(data.lang ? '&lang='+encodeUriComponent(data.lang) : ''),
   data.gtmOnSuccess,
   data.gtmOnFailure
   );
