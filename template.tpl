@@ -210,7 +210,7 @@ ___TEMPLATE_PARAMETERS___
                   {
                     "type": "LABEL",
                     "name": "Details",
-                    "displayName": "You can learn more about technical implementation by reading this article : \n\nhttps://help.iadvize.com/hc/en-gb/articles/4403097203986-Consent-from-the-chatbox-engage-your-visitors-even-if-they-refuse-cookies"
+                    "displayName": "You can learn more about technical implementation by reading this article : \n\nhttps://help.iadvize.com/hc/en-gb/articles/360020583900-iAdvize-and-cookies"
                   },
                   {
                     "type": "LABEL",
