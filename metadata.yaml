@@ -1,6 +1,8 @@
 homepage: "https://www.iadvize.com"
 documentation: "https://help.iadvize.com/hc/en-gb/articles/202575988"
 versions:
+  - sha: 9eaa32ea8fba99523c04dce8dfd90fb5a395a892
+    changeNotes: Update documentation link
   - sha: a8611907f47bd4f9239e5232260f19bdf4ab087f
     changeNotes: Improve tag with RGPD compliancy and custom data.
   - sha: ab3a63001441ac9cb0f1ca156fc56d026abb2940
