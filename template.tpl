@@ -13,8 +13,10 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "iAdvize - main tag",
-  "categories": ["CHAT"],
+  "displayName": "iAdvize - Main tag",
+  "categories": [
+    "CHAT"
+  ],
   "brand": {
     "id": "github.com_iadvize",
     "displayName": "iAdvize",
@@ -243,22 +245,56 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "SIMPLE_TABLE",
         "name": "customDataTable",
-        "displayName": "Add your custom data",
+        "displayName": "Define your custom data",
         "simpleTableColumns": [
           {
             "defaultValue": "",
             "displayName": "Name",
             "name": "name",
-            "type": "TEXT"
+            "type": "TEXT",
+            "valueValidators": [
+              {
+                "type": "NON_EMPTY"
+              }
+            ],
+            "valueHint": "",
+            "isUnique": true
           },
           {
             "defaultValue": "",
             "displayName": "Value",
             "name": "value",
             "type": "TEXT"
+          },
+          {
+            "defaultValue": "STRING",
+            "displayName": "Type",
+            "name": "type",
+            "type": "SELECT",
+            "selectItems": [
+              {
+                "value": "STRING",
+                "displayValue": "String"
+              },
+              {
+                "value": "NUMBER",
+                "displayValue": "Number"
+              },
+              {
+                "value": "BOOLEAN",
+                "displayValue": "Boolean"
+              }
+            ],
+            "macrosInSelect": false,
+            "valueValidators": [
+              {
+                "type": "NON_EMPTY"
+              }
+            ]
           }
         ],
-        "help": "They allow the capacities of behavioural targeting to be extended and offer better understanding of the visitor context to your agents.\n\nMore infos on our iAdvize Help Center: https://help.iadvize.com/hc/en-gb/articles/203401593-Create-and-use-the-custom-data"
+        "help": "They can be used to fine-tune the targeting of your visitors according to the values you enter, and they can also be used to add contextual information that will be attached to the next conversation.\n\nMore infos on our iAdvize Help Center: https://help.iadvize.com/hc/en-gb/articles/203401593-Create-and-use-the-custom-data\n\n▶️ 𝗦𝘁𝗿𝗶𝗻𝗴 (𝒅𝒆𝒇𝒂𝒖𝒍𝒕): No matter what the value contains, it will be considered as a character string.\n▶️ 𝗡𝘂𝗺𝗯𝗲𝗿: Attempts to convert the value to a floating-point number (if a decimal separator (point or comma) is present in the value) or otherwise to an integer. If conversion is not possible, the value remains unchanged and is sent as a string.\n▶️ 𝗕𝗼𝗼𝗹𝗲𝗮𝗻: The value is considered “true” if it contains one of the following values: true, TRUE, yes, YES or 1. Otherwise, it will be considered “false”.",
+        "newRowButtonText": "Add a new custom data"
       }
     ]
   },
@@ -311,7 +347,8 @@ ___TEMPLATE_PARAMETERS___
                 "value": "cust_email",
                 "displayValue": "Email"
               }
-            ]
+            ],
+            "isUnique": true
           },
           {
             "defaultValue": "",
@@ -320,7 +357,8 @@ ___TEMPLATE_PARAMETERS___
             "type": "TEXT"
           }
         ],
-        "help": "The visitor records contain different types of information about the visitor like his name or surname. If this information is already available on your website (logged-in area) then the visitor records can be filled in automatically thanks to custom data.\n\nMore info on our iAdvize Help Center: https://help.iadvize.com/hc/en-gb/articles/206855657-Renseigner-automatiquement-les-dossiers-visiteurs"
+        "help": "The visitor records contain different types of information about the visitor like his name or surname. If this information is already available on your website (logged-in area) then the visitor records can be filled in automatically thanks to custom data.\n\nMore info on our iAdvize Help Center: https://help.iadvize.com/hc/en-gb/articles/206855657-Renseigner-automatiquement-les-dossiers-visiteurs",
+        "newRowButtonText": "Add a new visitor field"
       }
     ]
   }
@@ -332,6 +370,10 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
 const copyFromWindow = require('copyFromWindow');
+const makeString = require('makeString');
+const makeNumber = require('makeNumber');
+const logToConsole = require('logToConsole');
+
 
 /**
  * Custom data tag
@@ -348,9 +390,35 @@ const idzCustomData = copyFromWindow('idzCustomData') || {};
 const customData = data.customDataTable || [];
 const visitorFields = data.visitorFieldTable || [];
 
+function getCustomDataValue(value, type) {
+  
+  let returnValue = value;
+    
+  switch (type) {
+        
+    case "STRING":
+      returnValue = makeString(value) || value;
+    break;
+    
+    case "NUMBER":
+      returnValue = makeNumber(value.replace(',', '.')) || value;
+    break;
+        
+    case "BOOLEAN":
+      returnValue = ["1", "yes", "YES", "true", "TRUE"].indexOf(value) !== -1;
+    break;
+    
+  }
+  
+  return returnValue;
+  
+}
+
 customData.concat(visitorFields).forEach((customData) => {
-  idzCustomData[customData.name] = customData.value;
+  idzCustomData[customData.name] = getCustomDataValue(customData.value, customData.type);
 });
+
+logToConsole("idzCustomData", idzCustomData);
 
 setInWindow('idzCustomData', idzCustomData, true);
 
@@ -557,13 +625,52 @@ ___WEB_PERMISSIONS___
       "isEditedByUser": true
     },
     "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "logging",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "environments",
+          "value": {
+            "type": 1,
+            "string": "debug"
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
   }
 ]
 
 
 ___TESTS___
 
-scenarios: []
+scenarios:
+- name: Test custom data cast
+  code: "const mockData = {\n  customDataTable: [\n    // String\n    {name: \"undefined\"\
+    , value: \"undefined\", type: \"\"},\n    \n    // Number - integer\n    {name:\
+    \ \"integerRegular\", value: \"42\", type: \"NUMBER\"},\n    {name: \"integerPrefixedBy0\"\
+    , value: \"007\", type: \"NUMBER\"},\n    {name: \"integerWithSpaces\", value:\
+    \ \"1 007\", type: \"NUMBER\"},\n \n    // Number - float\n    {name: \"floatWithoutLeading0\"\
+    , value: \".42\", type: \"NUMBER\"},\n    {name: \"floatWithoutLeading0Comma\"\
+    , value: \",42\", type: \"NUMBER\"},\n    {name: \"floatWithLeading0\", value:\
+    \ \"0.42\", type: \"NUMBER\"},\n    {name: \"floatWithLeading0Comma\", value:\
+    \ \"0,42\", type: \"NUMBER\"},\n    {name: \"floatWithSpace\", value: \"1 000.42\"\
+    , type: \"NUMBER\"},\n    {name: \"floatWithSpaceComma\", value: \"1 000,42\"\
+    , type: \"NUMBER\"},\n    \n    // Boolean\n    {name: \"booleanTrue\", value:\
+    \ \"true\", type: \"BOOLEAN\"},\n    {name: \"booleanTRUE\", value: \"TRUE\",\
+    \ type: \"BOOLEAN\"},\n    {name: \"booleanTRUE\", value: \"yes\", type: \"BOOLEAN\"\
+    },\n    {name: \"booleanTRUE\", value: \"YES\", type: \"BOOLEAN\"},\n    {name:\
+    \ \"booleanTRUE\", value: \"1\", type: \"BOOLEAN\"},\n    {name: \"booleanFalse\"\
+    , value: \"false\", type: \"BOOLEAN\"},\n  ]\n};\n\n// Call runCode to run the\
+    \ template's code.\nrunCode(mockData);"
 setup: ''
 
 
