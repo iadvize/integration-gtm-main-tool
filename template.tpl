@@ -186,53 +186,59 @@ ___TEMPLATE_PARAMETERS___
         "help": "If no language is set, iAdvize will use visitor\u0027s browser language. This means that if no agent is available in the visitor\u0027s language, the iAdvize notification will not be displayed. If you set a language, the notification will be displayed in that language (if a corresponding agent is available), no matter which language the visitor\u0027s browser is set to."
       },
       {
-        "type": "GROUP",
-        "name": "privacyCompliance",
-        "displayName": "Privacy compliance",
-        "groupStyle": "NO_ZIPPY",
+        "type": "CHECKBOX",
+        "name": "useExplicitCookiesConsent",
+        "checkboxText": "Respect cookie privacy",
+        "simpleValueType": true,
+        "help": "Depending on the privacy regulations in your country, you may need to enable this option.\nFor example, in europe you must comply with GDPR, so you must activate this option to be compliant.\nIf in doubt, contact iAdvize.",
         "subParams": [
           {
-            "type": "CHECKBOX",
-            "name": "useExplicitCookiesConsent",
-            "checkboxText": "Respect cookie privacy",
-            "simpleValueType": true,
-            "help": "Depending on the privacy regulations in your country, you may need to enable this option.\nIf you are subject to the RGPD you must activate this option to be compliant.\nIf in doubt, contact iAdvize.",
+            "type": "LABEL",
+            "name": "CMPMoreInfo",
+            "displayName": "If enable, this option prevents iAdvize from writing cookies until the user has given explicit consent through the iAdvize chat or your Consent Management Platform."
+          },
+          {
+            "type": "GROUP",
+            "name": "CMPImpletentationDetails",
+            "displayName": "Implementation details",
+            "groupStyle": "NO_ZIPPY",
             "subParams": [
               {
                 "type": "LABEL",
-                "name": "CMPMoreInfo",
-                "displayName": "If enable, this option prevents iAdvize from writing cookies until the user has given explicit consent through the iAdvize chat or your Consent Management Platform."
+                "name": "Details",
+                "displayName": "You can learn more about technical implementation by reading this article : \n\nhttps://help.iadvize.com/hc/en-gb/articles/360020583900-iAdvize-and-cookies"
               },
               {
-                "type": "GROUP",
-                "name": "CMPImpletentationDetails",
-                "displayName": "Implementation details",
-                "groupStyle": "NO_ZIPPY",
-                "subParams": [
-                  {
-                    "type": "LABEL",
-                    "name": "Details",
-                    "displayName": "You can learn more about technical implementation by reading this article : \n\nhttps://help.iadvize.com/hc/en-gb/articles/360020583900-iAdvize-and-cookies"
-                  },
-                  {
-                    "type": "LABEL",
-                    "name": "SnippetImplementation",
-                    "displayName": "iAdvize can also provide you with integration code examples with the following CMPs: Axeptio, Didomi, OneTrust and TrustCommander."
-                  }
-                ],
-                "enablingConditions": [
-                  {
-                    "paramName": "useExplicitCookiesConsent",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ],
-                "help": ""
+                "type": "LABEL",
+                "name": "SnippetImplementation",
+                "displayName": "iAdvize can also provide you with integration code examples with the following CMPs: Axeptio, Didomi, OneTrust and TrustCommander."
               }
-            ]
+            ],
+            "enablingConditions": [
+              {
+                "paramName": "useExplicitCookiesConsent",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ],
+            "help": ""
           }
-        ],
-        "help": ""
+        ]
+      }
+    ]
+  },
+  {
+    "type": "GROUP",
+    "name": "copilot",
+    "displayName": "iAdvize Copilot (optional)",
+    "groupStyle": "ZIPPY_OPEN",
+    "subParams": [
+      {
+        "type": "TEXT",
+        "name": "productIDValue",
+        "displayName": "Your product ID value",
+        "simpleValueType": true,
+        "help": "This field makes the link between the product page your visitors are viewing and the product as it appears in iAdvize Product Knowledge."
       }
     ]
   },
@@ -370,9 +376,11 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
 const copyFromWindow = require('copyFromWindow');
+const callInWindow = require('callInWindow');
 const makeString = require('makeString');
 const makeNumber = require('makeNumber');
 const logToConsole = require('logToConsole');
+
 
 
 /**
@@ -386,6 +394,7 @@ const logToConsole = require('logToConsole');
  *   ...
  * };
  */
+const DEFAULT_CUSTOM_DATA_PRODUCT_ID_NAME = "product_id";
 const idzCustomData = copyFromWindow('idzCustomData') || {};
 const customData = data.customDataTable || [];
 const visitorFields = data.visitorFieldTable || [];
@@ -412,6 +421,11 @@ function getCustomDataValue(value, type) {
   
   return returnValue;
   
+}
+
+// Copilot product ID
+if (data.productIDValue) {
+  idzCustomData[DEFAULT_CUSTOM_DATA_PRODUCT_ID_NAME] = data.productIDValue;
 }
 
 customData.concat(visitorFields).forEach((customData) => {
