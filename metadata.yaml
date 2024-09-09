@@ -1,6 +1,8 @@
 homepage: "https://www.iadvize.com"
 documentation: "https://help.iadvize.com/hc/en-gb/articles/202575988"
 versions:
+  - sha: 5acdc270779b378495433f4b1fe03bad93ffe04a
+    changeNotes: Simplifies product id filling for iAdvize Copilot
   - sha: e423c4777190148afa1bed97bd7014b7eebb4768
     changeNotes: Improve custom data type management
   - sha: 9eaa32ea8fba99523c04dce8dfd90fb5a395a892
