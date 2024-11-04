@@ -410,7 +410,7 @@ function getCustomDataValue(value, type) {
     break;
     
     case "NUMBER":
-      returnValue = makeNumber(value.replace(',', '.')) || value;
+      returnValue = makeNumber(makeString(value).replace(',', '.')) || value;
     break;
         
     case "BOOLEAN":
