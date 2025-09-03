@@ -1,6 +1,8 @@
 homepage: "https://www.iadvize.com"
 documentation: "https://help.iadvize.com/hc/en-gb/articles/202575988"
 versions:
+  - sha: ab785ae544b2d758b17635ce674c970aaa375dd2
+    changeNotes: Removed the Custom Data section in favor of the new dedicated tag: iAdvize – Custom Data tag.
   - sha: 9dd32ee6a356e493f22c139e514de43f043dc16c
     changeNotes: >
       Remove obsolete config parameter useExplicitCookiesConsent.
