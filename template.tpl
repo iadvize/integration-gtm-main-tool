@@ -33,300 +33,158 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
+    "type": "TEXT",
+    "name": "sid",
+    "displayName": "Project ID (\u003dSID)",
+    "simpleValueType": true,
+    "valueValidators": [
+      {
+        "type": "POSITIVE_NUMBER"
+      }
+    ],
+    "help": "The SID of the iAdvize project for your website. If you do not know your SID, you can find it in the iAdvize admin section \u003e project. If you do not know how to proceed, please contact your CSM."
+  },
+  {
+    "type": "SELECT",
+    "name": "lang",
+    "displayName": "Visitor language",
+    "selectItems": [
+      {
+        "value": "ar",
+        "displayValue": "Arabic (ar)"
+      },
+      {
+        "value": "eu",
+        "displayValue": "Basque (eu)"
+      },
+      {
+        "value": "bg",
+        "displayValue": "Bulgarian (bg)"
+      },
+      {
+        "value": "ca",
+        "displayValue": "Catalan (ca)"
+      },
+      {
+        "value": "hr",
+        "displayValue": "Croatian (hr)"
+      },
+      {
+        "value": "cz",
+        "displayValue": "Czech (cz)"
+      },
+      {
+        "value": "dk",
+        "displayValue": "Danish (dk)"
+      },
+      {
+        "value": "nl",
+        "displayValue": "Dutch (nl)"
+      },
+      {
+        "value": "en",
+        "displayValue": "English (en)"
+      },
+      {
+        "value": "fi",
+        "displayValue": "Finnish (fi)"
+      },
+      {
+        "value": "fr",
+        "displayValue": "French (fr)"
+      },
+      {
+        "value": "de",
+        "displayValue": "German (de)"
+      },
+      {
+        "value": "el",
+        "displayValue": "Greek (el)"
+      },
+      {
+        "value": "hu",
+        "displayValue": "Hungarian (hu)"
+      },
+      {
+        "value": "it",
+        "displayValue": "Italian (it)"
+      },
+      {
+        "value": "ja",
+        "displayValue": "Japanese (ja)"
+      },
+      {
+        "value": "ko",
+        "displayValue": "Korean (ko)"
+      },
+      {
+        "value": "lt",
+        "displayValue": "Lithuanian (lt)"
+      },
+      {
+        "value": "cn",
+        "displayValue": "Mandarin (cn)"
+      },
+      {
+        "value": "pl",
+        "displayValue": "Polish (pl)"
+      },
+      {
+        "value": "pt",
+        "displayValue": "Portugese (pt)"
+      },
+      {
+        "value": "ro",
+        "displayValue": "Romanian (ro)"
+      },
+      {
+        "value": "ru",
+        "displayValue": "Russian (ru)"
+      },
+      {
+        "value": "sr",
+        "displayValue": "Serbian (sr)"
+      },
+      {
+        "value": "sk",
+        "displayValue": "Slovak (sk)"
+      },
+      {
+        "value": "sl",
+        "displayValue": "Slovenian (sl)"
+      },
+      {
+        "value": "es",
+        "displayValue": "Spanish (es)"
+      },
+      {
+        "value": "se",
+        "displayValue": "Swedish (se)"
+      },
+      {
+        "value": "tw",
+        "displayValue": "Taiwanese Mandarin (tw)"
+      },
+      {
+        "value": "tr",
+        "displayValue": "Turkish (tr)"
+      },
+      {
+        "value": "uk",
+        "displayValue": "Ukrainian (uk)"
+      }
+    ],
+    "simpleValueType": true,
+    "notSetText": "Use the visitor\u0027s browser language (default)",
+    "help": "If no language is set, iAdvize will use visitor\u0027s browser language. This means that if no agent is available in the visitor\u0027s language, the iAdvize notification will not be displayed. If you set a language, the notification will be displayed in that language (if a corresponding agent is available), no matter which language the visitor\u0027s browser is set to.",
+    "macrosInSelect": true
+  },
+  {
     "type": "GROUP",
     "name": "mainGroup",
     "displayName": "Global (required)",
     "groupStyle": "ZIPPY_OPEN",
-    "subParams": [
-      {
-        "type": "TEXT",
-        "name": "sid",
-        "displayName": "Project ID (\u003dSID)",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "POSITIVE_NUMBER"
-          }
-        ],
-        "help": "The SID of the iAdvize project for your website. If you do not know your SID, you can find it in the iAdvize admin section \u003e project. If you do not know how to proceed, please contact your CSM."
-      },
-      {
-        "type": "SELECT",
-        "name": "lang",
-        "displayName": "Visitor language",
-        "macrosInSelect": false,
-        "selectItems": [
-          {
-            "value": "ar",
-            "displayValue": "Arabic"
-          },
-          {
-            "value": "eu",
-            "displayValue": "Basque"
-          },
-          {
-            "value": "bg",
-            "displayValue": "Bulgarian"
-          },
-          {
-            "value": "ca",
-            "displayValue": "Catalan"
-          },
-          {
-            "value": "hr",
-            "displayValue": "Croatian"
-          },
-          {
-            "value": "cz",
-            "displayValue": "Czech"
-          },
-          {
-            "value": "dk",
-            "displayValue": "Danish"
-          },
-          {
-            "value": "nl",
-            "displayValue": "Dutch"
-          },
-          {
-            "value": "en",
-            "displayValue": "English"
-          },
-          {
-            "value": "fi",
-            "displayValue": "Finnish"
-          },
-          {
-            "value": "fr",
-            "displayValue": "French"
-          },
-          {
-            "value": "de",
-            "displayValue": "German"
-          },
-          {
-            "value": "el",
-            "displayValue": "Greek"
-          },
-          {
-            "value": "hu",
-            "displayValue": "Hungarian"
-          },
-          {
-            "value": "it",
-            "displayValue": "Italian"
-          },
-          {
-            "value": "ja",
-            "displayValue": "Japanese"
-          },
-          {
-            "value": "ko",
-            "displayValue": "Korean"
-          },
-          {
-            "value": "lt",
-            "displayValue": "Lithuanian"
-          },
-          {
-            "value": "cn",
-            "displayValue": "Mandarin"
-          },
-          {
-            "value": "pl",
-            "displayValue": "Polish"
-          },
-          {
-            "value": "pt",
-            "displayValue": "Portugese"
-          },
-          {
-            "value": "ro",
-            "displayValue": "Romanian"
-          },
-          {
-            "value": "ru",
-            "displayValue": "Russian"
-          },
-          {
-            "value": "sr",
-            "displayValue": "Serbian"
-          },
-          {
-            "value": "sk",
-            "displayValue": "Slovak"
-          },
-          {
-            "value": "sl",
-            "displayValue": "Slovenian"
-          },
-          {
-            "value": "es",
-            "displayValue": "Spanish"
-          },
-          {
-            "value": "se",
-            "displayValue": "Swedish"
-          },
-          {
-            "value": "tw",
-            "displayValue": "Taiwanese Mandarin"
-          },
-          {
-            "value": "tr",
-            "displayValue": "Turkish"
-          },
-          {
-            "value": "uk",
-            "displayValue": "Ukrainian"
-          }
-        ],
-        "simpleValueType": true,
-        "notSetText": "Use the visitor\u0027s browser language (default)",
-        "help": "If no language is set, iAdvize will use visitor\u0027s browser language. This means that if no agent is available in the visitor\u0027s language, the iAdvize notification will not be displayed. If you set a language, the notification will be displayed in that language (if a corresponding agent is available), no matter which language the visitor\u0027s browser is set to."
-      }
-    ]
-  },
-  {
-    "type": "GROUP",
-    "name": "copilot",
-    "displayName": "iAdvize Copilot (optional)",
-    "groupStyle": "ZIPPY_OPEN",
-    "subParams": [
-      {
-        "type": "TEXT",
-        "name": "productIDValue",
-        "displayName": "Your product ID value",
-        "simpleValueType": true,
-        "help": "This field makes the link between the product page your visitors are viewing and the product as it appears in iAdvize Product Knowledge."
-      }
-    ]
-  },
-  {
-    "type": "GROUP",
-    "name": "customDataGroup",
-    "displayName": "Custom data (optional)",
-    "groupStyle": "ZIPPY_CLOSED",
-    "subParams": [
-      {
-        "type": "SIMPLE_TABLE",
-        "name": "customDataTable",
-        "displayName": "Define your custom data",
-        "simpleTableColumns": [
-          {
-            "defaultValue": "",
-            "displayName": "Name",
-            "name": "name",
-            "type": "TEXT",
-            "valueValidators": [
-              {
-                "type": "NON_EMPTY"
-              }
-            ],
-            "valueHint": "",
-            "isUnique": true
-          },
-          {
-            "defaultValue": "",
-            "displayName": "Value",
-            "name": "value",
-            "type": "TEXT"
-          },
-          {
-            "defaultValue": "STRING",
-            "displayName": "Type",
-            "name": "type",
-            "type": "SELECT",
-            "selectItems": [
-              {
-                "value": "STRING",
-                "displayValue": "String"
-              },
-              {
-                "value": "NUMBER",
-                "displayValue": "Number"
-              },
-              {
-                "value": "BOOLEAN",
-                "displayValue": "Boolean"
-              }
-            ],
-            "macrosInSelect": false,
-            "valueValidators": [
-              {
-                "type": "NON_EMPTY"
-              }
-            ]
-          }
-        ],
-        "help": "They can be used to fine-tune the targeting of your visitors according to the values you enter, and they can also be used to add contextual information that will be attached to the next conversation.\n\nMore infos on our iAdvize Help Center: https://help.iadvize.com/hc/en-gb/articles/203401593-Create-and-use-the-custom-data\n\n▶️ 𝗦𝘁𝗿𝗶𝗻𝗴 (𝒅𝒆𝒇𝒂𝒖𝒍𝒕): No matter what the value contains, it will be considered as a character string.\n▶️ 𝗡𝘂𝗺𝗯𝗲𝗿: Attempts to convert the value to a floating-point number (if a decimal separator (point or comma) is present in the value) or otherwise to an integer. If conversion is not possible, the value remains unchanged and is sent as a string.\n▶️ 𝗕𝗼𝗼𝗹𝗲𝗮𝗻: The value is considered “true” if it contains one of the following values: true, TRUE, yes, YES or 1. Otherwise, it will be considered “false”.",
-        "newRowButtonText": "Add a new custom data"
-      }
-    ]
-  },
-  {
-    "type": "GROUP",
-    "name": "visitorFieldsGroup",
-    "displayName": "Visitor fields (optional)",
-    "groupStyle": "ZIPPY_CLOSED",
-    "subParams": [
-      {
-        "type": "SIMPLE_TABLE",
-        "name": "visitorFieldTable",
-        "displayName": "Set your visitor fields",
-        "simpleTableColumns": [
-          {
-            "defaultValue": "",
-            "displayName": "Name",
-            "name": "name",
-            "type": "SELECT",
-            "selectItems": [
-              {
-                "value": "cust_firstname",
-                "displayValue": "First name"
-              },
-              {
-                "value": "cust_name",
-                "displayValue": "Last name"
-              },
-              {
-                "value": "cust_address",
-                "displayValue": "Address"
-              },
-              {
-                "value": "cust_city",
-                "displayValue": "City"
-              },
-              {
-                "value": "cust_zipcode",
-                "displayValue": "ZIP Code"
-              },
-              {
-                "value": "cust_country",
-                "displayValue": "Country"
-              },
-              {
-                "value": "cust_phonenumber",
-                "displayValue": "Phone Number"
-              },
-              {
-                "value": "cust_email",
-                "displayValue": "Email"
-              }
-            ],
-            "isUnique": true
-          },
-          {
-            "defaultValue": "",
-            "displayName": "Value",
-            "name": "value",
-            "type": "TEXT"
-          }
-        ],
-        "help": "The visitor records contain different types of information about the visitor like his name or surname. If this information is already available on your website (logged-in area) then the visitor records can be filled in automatically thanks to custom data.\n\nMore info on our iAdvize Help Center: https://help.iadvize.com/hc/en-gb/articles/206855657-Renseigner-automatiquement-les-dossiers-visiteurs",
-        "newRowButtonText": "Add a new visitor field"
-      }
-    ]
+    "subParams": []
   }
 ]
 
@@ -336,67 +194,6 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
 const copyFromWindow = require('copyFromWindow');
-const callInWindow = require('callInWindow');
-const makeString = require('makeString');
-const makeNumber = require('makeNumber');
-const logToConsole = require('logToConsole');
-
-
-
-/**
- * Custom data tag
- * 
- * Example:
- * 
- * window.idzCustomData = {
- *   key1: value1,
- *.  key2: value2,
- *   ...
- * };
- */
-const DEFAULT_CUSTOM_DATA_PRODUCT_ID_NAME = "product_id";
-const idzCustomData = copyFromWindow('idzCustomData') || {};
-const customData = data.customDataTable || [];
-const visitorFields = data.visitorFieldTable || [];
-
-function getCustomDataValue(value, type) {
-  
-  let returnValue = value;
-    
-  switch (type) {
-        
-    case "STRING":
-      returnValue = makeString(value) || value;
-    break;
-    
-    case "NUMBER":
-      returnValue = makeNumber(makeString(value).replace(',', '.')) || value;
-    break;
-        
-    case "BOOLEAN":
-      returnValue = ["1", "yes", "YES", "true", "TRUE"].indexOf(value) !== -1;
-    break;
-    
-  }
-  
-  return returnValue;
-  
-}
-
-// Copilot product ID
-if (data.productIDValue) {
-  idzCustomData[DEFAULT_CUSTOM_DATA_PRODUCT_ID_NAME] = data.productIDValue;
-}
-
-customData.concat(visitorFields).forEach((customData) => {
-  idzCustomData[customData.name] = getCustomDataValue(customData.value, customData.type);
-});
-
-logToConsole("idzCustomData", idzCustomData);
-
-setInWindow('idzCustomData', idzCustomData, true);
-
-
 
 /**
  * Main tag
@@ -445,10 +242,6 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://*.twilio.com/*"
-              },
-              {
-                "type": 1,
-                "string": "https://*.launchdarkly.com/*"
               }
             ]
           }
@@ -510,107 +303,8 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
-              },
-              {
-                "type": 3,
-                "mapKey": [
-                  {
-                    "type": 1,
-                    "string": "key"
-                  },
-                  {
-                    "type": 1,
-                    "string": "read"
-                  },
-                  {
-                    "type": 1,
-                    "string": "write"
-                  },
-                  {
-                    "type": 1,
-                    "string": "execute"
-                  }
-                ],
-                "mapValue": [
-                  {
-                    "type": 1,
-                    "string": "idzCustomData"
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  }
-                ]
-              },
-              {
-                "type": 3,
-                "mapKey": [
-                  {
-                    "type": 1,
-                    "string": "key"
-                  },
-                  {
-                    "type": 1,
-                    "string": "read"
-                  },
-                  {
-                    "type": 1,
-                    "string": "write"
-                  },
-                  {
-                    "type": 1,
-                    "string": "execute"
-                  }
-                ],
-                "mapValue": [
-                  {
-                    "type": 1,
-                    "string": "iAdvize"
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  }
-                ]
               }
             ]
-          }
-        }
-      ]
-    },
-    "clientAnnotations": {
-      "isEditedByUser": true
-    },
-    "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
-        "publicId": "logging",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "environments",
-          "value": {
-            "type": 1,
-            "string": "debug"
           }
         }
       ]
@@ -625,25 +319,7 @@ ___WEB_PERMISSIONS___
 
 ___TESTS___
 
-scenarios:
-- name: Test custom data cast
-  code: "const mockData = {\n  customDataTable: [\n    // String\n    {name: \"undefined\"\
-    , value: \"undefined\", type: \"\"},\n    \n    // Number - integer\n    {name:\
-    \ \"integerRegular\", value: \"42\", type: \"NUMBER\"},\n    {name: \"integerPrefixedBy0\"\
-    , value: \"007\", type: \"NUMBER\"},\n    {name: \"integerWithSpaces\", value:\
-    \ \"1 007\", type: \"NUMBER\"},\n \n    // Number - float\n    {name: \"floatWithoutLeading0\"\
-    , value: \".42\", type: \"NUMBER\"},\n    {name: \"floatWithoutLeading0Comma\"\
-    , value: \",42\", type: \"NUMBER\"},\n    {name: \"floatWithLeading0\", value:\
-    \ \"0.42\", type: \"NUMBER\"},\n    {name: \"floatWithLeading0Comma\", value:\
-    \ \"0,42\", type: \"NUMBER\"},\n    {name: \"floatWithSpace\", value: \"1 000.42\"\
-    , type: \"NUMBER\"},\n    {name: \"floatWithSpaceComma\", value: \"1 000,42\"\
-    , type: \"NUMBER\"},\n    \n    // Boolean\n    {name: \"booleanTrue\", value:\
-    \ \"true\", type: \"BOOLEAN\"},\n    {name: \"booleanTRUE\", value: \"TRUE\",\
-    \ type: \"BOOLEAN\"},\n    {name: \"booleanTRUE\", value: \"yes\", type: \"BOOLEAN\"\
-    },\n    {name: \"booleanTRUE\", value: \"YES\", type: \"BOOLEAN\"},\n    {name:\
-    \ \"booleanTRUE\", value: \"1\", type: \"BOOLEAN\"},\n    {name: \"booleanFalse\"\
-    , value: \"false\", type: \"BOOLEAN\"},\n  ]\n};\n\n// Call runCode to run the\
-    \ template's code.\nrunCode(mockData);"
+scenarios: []
 setup: ''
 
 
