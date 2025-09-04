@@ -178,13 +178,6 @@ ___TEMPLATE_PARAMETERS___
     "notSetText": "Use the visitor\u0027s browser language (default)",
     "help": "If no language is set, iAdvize will use visitor\u0027s browser language. This means that if no agent is available in the visitor\u0027s language, the iAdvize notification will not be displayed. If you set a language, the notification will be displayed in that language (if a corresponding agent is available), no matter which language the visitor\u0027s browser is set to.",
     "macrosInSelect": true
-  },
-  {
-    "type": "GROUP",
-    "name": "mainGroup",
-    "displayName": "Global (required)",
-    "groupStyle": "ZIPPY_OPEN",
-    "subParams": []
   }
 ]
 
